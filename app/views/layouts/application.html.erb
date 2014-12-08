@@ -10,11 +10,18 @@
 
 <div class="main-container">
     <div class="container push-top">
+      <div class="text-right actions">
+        <% if user_signed_in? %>
+            <%= link_to 'Sign Out', :destroy_user_session, class: 'btn btn-danger', :method => :delete %>
+        <% else %>
+            <%= link_to 'Sign In', :new_user_session, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
         <% if notice.present? %>
-            <p class="alert notice alert-info"><%= notice %></p>
+            <p class="alert notice alert-success"><%= notice %></p>
           <% end %>
         <% if alert.present? %>
-            <p class="alert alert-warning"><%= alert %></p>
+            <p class="alert alert-danger"><%= alert %></p>
           <% end %>
 
         <%= yield %>

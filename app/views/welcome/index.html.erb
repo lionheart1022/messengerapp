@@ -5,4 +5,5 @@
 <% end%>
 <p>Enjoy on out app!</p>
 
-<%= link_to 'logout', :destroy_user_session, class: 'btn btn-primary', :method => :delete %>
+<%= link_to 'New Message', new_message_path, {class: 'btn btn-primary'} %>
+<%= link_to 'Sign Out', :destroy_user_session, class: 'btn btn-danger', :method => :delete %>
