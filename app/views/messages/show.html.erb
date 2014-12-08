@@ -1,19 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Sender:</strong>
-  <%= @message.sender %>
-</p>
+<h2 class="push-bottom"><%= @message.sender %> send the message to you.</h2>
 
-<p>
-  <strong>Receiver:</strong>
-  <%= @message.receiver %>
-</p>
+<blockquote>
+    <p><%= @message.content %></p>
+    <footer><%= @message.sender %></footer>
+</blockquote>
 
-<p>
-  <strong>Content:</strong>
-  <%= @message.content %>
-</p>
-
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+<%= link_to 'Edit', edit_message_path(@message), :class=>'btn btn-primary' %>
+<%= link_to 'Back', messages_path, :class=>'btn btn-info' %>

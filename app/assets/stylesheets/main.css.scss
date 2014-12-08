@@ -4,6 +4,12 @@ body {
 h2 {
   margin-bottom: 30px;
 }
+blockquote {
+  border-left-color: #ccc;
+  footer {
+    font-style: italic;
+  }
+}
 
 .push-top {
   margin-top: 35px;
