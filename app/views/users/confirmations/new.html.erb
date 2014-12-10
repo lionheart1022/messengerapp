@@ -3,11 +3,12 @@
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="form-group field">
+  <div class="input-group form-group field">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
     <%= f.email_field :email, class='form-control input-lg input-block', placeholder: :email, autofocus: true %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group actions">
     <%= f.submit 'Resend confirmation instructions', class:"btn btn-primary btn-block" %>
   </div>
 <% end %>
