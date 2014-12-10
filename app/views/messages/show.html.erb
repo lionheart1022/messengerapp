@@ -1,11 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<h2 class="push-bottom"><%= @message.sender %> send the message to you.</h2>
-
 <blockquote>
     <p><%= @message.content %></p>
-    <footer><%= @message.sender %></footer>
+    <footer><%= @message.sender.full_name %></footer>
 </blockquote>
 
-<%= link_to 'Edit', edit_message_path(@message), :class=>'btn btn-primary' %>
 <%= link_to 'Back', messages_path, :class=>'btn btn-info' %>

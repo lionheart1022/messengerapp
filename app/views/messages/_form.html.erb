@@ -12,19 +12,21 @@
   <% end %>
 
     <div class="form-group">
-      <%= f.label :sender %>
-      <%= collection_select(:message, :sender, User.all, :id, :full_name, {}, {class:"form-control"}) %>
+      <%= f.label :receiver_id %>
+      <%= f.select :receiver_id, @receivers.collect{|u| [u.full_name, u.id]}, {}, {:class => 'form-control'} %>
     </div>
 
     <div class="form-group">
-      <%= f.label :receiver %>
-      <%= collection_select(:message, :receiver, User.all, :id, :full_name, {}, {class:"form-control"}) %>
+      <%= f.label :subject %>
+      <%= f.text_field :subject, :class => 'form-control' %>
     </div>
+
     <div class="form-group">
       <%= f.label :content %>
       <%= f.text_area :content, :class => 'form-control', :rows => '5' %>
     </div>
   <div class="actions">
+    <%= f.hidden_field :sender_id, :value => current_user.id %>
     <%= f.submit 'Send Message', :class => 'btn btn-primary' %>
     <%= link_to 'Back', messages_path, :class => 'btn btn-info' %>
   </div>

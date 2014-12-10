@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :messages
-
-  get 'messages/index'
 
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
 
@@ -11,7 +8,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'messages#index'
 
-  resources :messages
+  resources :messages, :except => ['edit'] do
+    collection do
+      get 'sent'
+    end
+  end
 
 
   # Example of regular route:
