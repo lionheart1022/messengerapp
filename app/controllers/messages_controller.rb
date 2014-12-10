@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     respond_to do |format|
       if @message.save
-        UserMailer.send_email(@message.sender.email, @message.receiver.email, @message.subject, @message.content)
+        UserMailer.send_email(@message.sender.email, @message.receiver.email, @message.subject, @message.content).deliver
         format.html { redirect_to(@message, notice: 'User was successfully created.') }
         format.json { render json: @message, status: :created, location: @message }
       else

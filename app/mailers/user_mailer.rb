@@ -5,6 +5,6 @@ class UserMailer < ActionMailer::Base
     @sender = sender
     @receiver = receiver
     @content = content
-    mail(from: @sender, to: @receiver, subject: 'Hello!').deliver
+    mail(from: @sender, to: @receiver, subject: 'Hello!')
   end
 end
