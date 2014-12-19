@@ -15,7 +15,7 @@
             <div class="field col-sm-6">
                 <div class="input-group form-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <%= f.text_field :last_name, class:'form-control input-lg', placeholder: :first_name %>
+                  <%= f.text_field :last_name, class:'form-control input-lg', placeholder: :last_name %>
                 </div>
             </div>
         </div>
@@ -50,6 +50,27 @@
             </div>
           </div>
         </div>
+
+        <%= f.fields_for :contact do |c| %>
+            <div class="row">
+              <%= c.label :phone %><br />
+              <div class="field col-sm-12">
+                <div class="input-group form-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <%= c.text_field :phone, class:'form-control input-lg', placeholder: :phone %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <%= c.label :address %><br />
+              <div class="field col-sm-12">
+                <div class="input-group form-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <%= c.text_field :address, class:'form-control input-lg', placeholder: :address %>
+                </div>
+              </div>
+            </div>
+        <% end %>
 
       <div class="form-group">
         <%= f.submit 'Sign up', class:'btn btn-primary btn-lg btn-block' %>

@@ -4,7 +4,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    super
+    build_resource({})
+
+    @validatable = devise_mapping.validatable?
+    if @validatable
+      @minimum_password_length = resource_class.password_length.min
+    end
+
+    self.resource.build_contact
+    respond_with self.resource
   end
 
   # POST /resource
@@ -40,8 +48,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # You can put the params you want to permit in the empty array.
   def configure_sign_up_params
-    #params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
-    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name]
+    # params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name, contact_attributes:[:phone, :address]]
+    # params.require(:user).permit(:first_name, :last_name, contacts:[:phone, :address])
     #devise_parameter_sanitizer.for(:sign_up) << :first_name
   end
 
@@ -49,7 +58,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     # params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)
     # devise_parameter_sanitizer.sanitize(:account_update)
-    devise_parameter_sanitizer.for(:account_update) << [:first_name, :last_name]
+    # devise_parameter_sanitizer.for(:account_update) << [:first_name, :last_name]
+    # params.require(:user).permit(:first_name, :last_name, contacts:[:phone, :address])
   end
 
   # The path used after sign up.

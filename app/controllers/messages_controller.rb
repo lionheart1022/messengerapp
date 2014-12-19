@@ -5,12 +5,12 @@ class MessagesController < ApplicationController
   respond_to :html
 
   def index
-    @messages = Message.where(receiver_id: current_user.id)
+    @messages = current_user.receiver_messages
     respond_with(@messages)
   end
 
   def sent
-    @messages = Message.where(sender_id: current_user.id)
+    @messages = current_user.sender_messages
   end
 
   def show
