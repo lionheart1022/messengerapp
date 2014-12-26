@@ -1,0 +1,29 @@
+<h1>Listing users</h1>
+
+<%= form_tag '/users/search', method: :post do %>
+    <%= text_field_tag :search, '' %>
+    <%= submit_tag 'Submit' %>
+<% end %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>User Name</th>
+    <th>Email address</th>
+    <th>Phone Number</th>
+    <th>Address</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.full_name, edit_user_path(user.id) %></td>
+        <td><%= user.email %></td>
+        <td><%= user.contact.phone if user.contact.present? %></td>
+        <td><%= user.contact.address if user.contact.present? %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>

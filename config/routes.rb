@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
+  resources :users, only: [:index, :edit, :update, :show] do
+    collection do
+      post :search
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -8,12 +13,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'messages#index'
 
-  resources :messages, :except => ['edit'] do
+  resources :messages, :except => [:edit] do
     collection do
-      get 'sent'
+      get :sent
+      post :search
     end
   end
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
